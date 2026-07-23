@@ -15,7 +15,12 @@ agent-skills/
 ├── README.md                                    ← this file
 ├── SYNC.md                                      ← sync & contribution workflow
 ├── .gitignore
-├── skills/                                      ← OpenClaw skill definitions
+├── bootstrap/                                   ← Agent identity & workspace defaults
+│   ├── AGENTS.md                                ← Workspace rules, session startup, memory
+│   ├── SOUL.md                                  ← Persona, voice, brand, priorities
+│   ├── IDENTITY.md                              ← Name, origin, vibe
+│   └── TOOLS.md                                 ← Repos, Supabase ref, cron jobs, competitors
+├── skills/                                      ← OpenClaw skill definitions (SOPs)
 │   ├── formatly-blog-writer/SKILL.md            ← Blog writing & publishing
 │   ├── formatly-feedback-monitor/SKILL.md       ← Customer feedback triage
 │   ├── formatly-health-monitor/SKILL.md         ← Daily business health checks
@@ -28,8 +33,9 @@ agent-skills/
 ## Quick Start for Agents
 
 1. `git clone https://github.com/Faithmanex/formatly-agent-skills.git`
-2. Read the relevant `SKILL.md` before starting a task
-3. For blog writing: always read `references/BLOG_CONTENT_FORMATTING.md` first
+2. Copy `bootstrap/` files into your workspace root (`/data/workspace/`) to establish identity, rules, and tool references
+3. Read the relevant skill (`skills/*/SKILL.md`) before starting a task
+4. For blog writing: always read `references/BLOG_CONTENT_FORMATTING.md` first
 
 ## Conventions
 

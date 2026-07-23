@@ -60,9 +60,37 @@ cd /data/workspace/skills-repo && git add -A && git commit -m "Sync references: 
    - `Sync references: {file list} — {what upstream changed}`
 5. **Push** — there's no review gate; trust and verify. If you're uncertain, commit to a branch instead.
 
+## Bootstrap: Setting Up a New Deployment
+
+When spinning up a new FormatlyClaw instance, `bootstrap/` provides everything to replicate the agent's identity and workspace rules.
+
+```bash
+# Clone the skills repo into the workspace
+git clone https://github.com/Faithmanex/formatly-agent-skills.git /data/workspace/agent-skills
+
+# Copy bootstrap files into the workspace root
+cp -r /data/workspace/agent-skills/bootstrap/* /data/workspace/
+```
+
+### What bootstrap/ Contains
+
+| File | Purpose |
+|------|---------|
+| `AGENTS.md` | Workspace rules, session behavior, memory conventions, rate-limit handling, heartbeat logic |
+| `SOUL.md` | Persona, business values, brand voice, boundaries, self-assigned priorities |
+| `IDENTITY.md` | Name, origin story, vibe, emoji |
+| `TOOLS.md` | Repo paths, Supabase ref + region, cron table, competitor list, blog writing references, brand colors |
+
+### Post-Bootstrap Setup Required (per-environment, not in repo)
+
+1. **Supabase credentials** — service_role + anon keys in `/data/workspace/.env.format`
+2. **GitHub remote URLs** — tokens embedded in website/backend repo remotes
+3. **Cron jobs** — register matching the schedules in `TOOLS.md`
+4. **PostHog access** — personal API key for analytics queries
+
 ## Private / Sensitive Data
 
 - **NEVER** commit credentials, API keys, tokens, or secrets to this repo.
 - Credential *locations* (e.g., "supabase key in `.env.format`") are fine.
 - Business metrics and real user data stay in `MEMORY.md` and Supabase — not here.
-- SOUL.md and IDENTITY.md are personality files — not procedures. They stay in the workspace.
+- `bootstrap/` files are safe — they contain work rules, no secrets.
