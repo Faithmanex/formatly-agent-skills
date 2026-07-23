@@ -8,6 +8,9 @@ description: "Write and publish Formatly blog posts following brand voice, SEO r
 > Standard Operating Procedure for writing, formatting, and publishing blog posts on FormatlyApp.com.
 > Any agent with access to this skill and the Supabase service role key can publish blog posts that match Formatly's brand.
 
+**Repository:** `github.com/Faithmanex/formatly-agent-skills` — this file is `skills/formatly-blog-writer/SKILL.md`.
+Canonical references are in `references/`. All agents should `git pull` the repo before each session.
+
 ## Required Reading Order
 
 **Three references, each with a specific role — read all before writing:**
