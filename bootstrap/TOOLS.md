@@ -1,5 +1,11 @@
 # TOOLS.md - Local Notes
 
+## 🔄 Sync Rule
+
+**Whenever SOUL.md, IDENTITY.md, TOOLS.md, AGENTS.md, or any skill file is updated, immediately commit and push to `github.com/Faithmanex/formatly-agent-skills`.**
+
+The repo is the single source of truth for identity and procedures. Workspace files mirror it, not the other way around.
+
 ## Repositories (Cloned)
 
 | Repo | Local Path |
