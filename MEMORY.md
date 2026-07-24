@@ -58,4 +58,31 @@ Historical resolved issues:
 9. **Privacy first in external comms.** Never reference specific document details (title, format type, word count) in user-facing messages. Say "when you uploaded a document" or "when you tried Formatly" — not "your APA thesis." We don't advertise that we inspect content.
 10. **Blog posts — read the canonical format guide BEFORE writing or publishing anything.** The Formatly repo's `BLOG_CONTENT_FORMATTING.md` (synced into `/data/workspace/website/BLOG_CONTENT_FORMATTING.md`) is the single source of truth. Read it on every blog-writing turn (cron, request, or proactive). Key rules: <h2> is the first element (no <h1>); no inline `style=""` except callout boxes; links use `class="text-[#006ee5] font-medium underline hover:text-[#0056b8]"`; smart-punctuation HTML entities only (`&ldquo;` `&rdquo;` `&lsquo;` `&rsquo;` `&mdash;` `&ndash;` `&hellip;` `&deg;` `&Prime;` `&`); no `<script>` / `<style>` / `<hr>` / empty tags / base64 images. **Do NOT author** `<script type="application/ld+json">` or `<!-- SEO METADATA -->` blocks inside `content` — the slimmed `app/blog/[slug]/page.tsx` builds JSON-LD and metadata from the post's other columns (`title`, `excerpt`, `slug`, `category`, `author`, `cover_image`, `read_time`, date fields) and injects them into `<head>` at render time. The legacy extract-by-parsing pattern is only a backward-compat safety net for pre-rewrite posts. Treat local `formatly-blog-writer/SKILL.md` as a workflow reference only (tone, templates, SVG cover generation, Supabase publishing mechanics); on HTML it defers to the repo guide. If they conflict, the repo guide wins.
 
-11. **Always create an implementation plan before doing a coding/multi-step task.** Don't run straight into the work. EchelNet wants me to write up a plan first — steps, approach, files to touch, rollback strategy. Get signoff before executing. This avoids wasted effort and over-engineering (see: annotated bibliography download asset fiasco, 2026-07-24).
+11. **Always create an implementation plan before doing a coding/multi-step task.** Don't run straight into the work. EchelNet wants me to write up a plan first. Get signoff before executing. This avoids wasted effort and over-engineering (see: annotated bibliography download asset fiasco, 2026-07-24).
+
+**Implementation plan format (Claude-style):**
+
+```
+## Goal
+One-line summary of what we're solving.
+
+## Approach
+Strategy and why this way vs alternatives.
+
+## Files to Touch
+- `path/to/file.ts` — what changes (create, edit, delete)
+- `path/to/other.ts` — what changes
+
+## Step-by-Step Plan
+1. Step one
+2. Step two
+3. Step three
+
+## Rollback Strategy
+How to undo each step if something goes wrong (git revert, DB migration revert, etc.)
+
+## Risks & Edge Cases
+What could break, what to watch out for.
+```
+
+**When to write one:** Any task that touches code, infrastructure, content changes beyond a single file tweak, or anything that would be annoying to undo. Minor one-liners don't need it.
